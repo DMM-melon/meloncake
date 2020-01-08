@@ -3,6 +3,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def new
+
   end
 
   def create
@@ -16,4 +17,4 @@ class Admin::ProductsController < ApplicationController
 
   def update
   end
-end
+
