@@ -3,8 +3,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def new
-      @product = Product.new
-      # @product = Product.all
+
   end
 
   def create
@@ -18,8 +17,4 @@ class Admin::ProductsController < ApplicationController
 
   def update
   end
-  private
-  def product_params
-      params.require(:product).permit(:name, :introduction, :price)
-  end
-end
+
