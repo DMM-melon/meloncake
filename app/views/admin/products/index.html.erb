@@ -1,2 +1,35 @@
-<h1>Admin::Products#index</h1>
-<p>Find me in app/views/admin/products/index.html.erb</p>
+<div class='body'>
+  <div class='container'>
+  <p id="notice"></p>
+  <h2>商品一覧画面</h2>
+  <%=link_to "+", new_admin_product_path %>
+
+  	<div class="col-lg-12">
+  	<table class="table table-hover table-inverse">
+  	<thead>
+  		<tr>
+  			<th>商品ID</th>
+  			<th>商品名</th>
+  			<th>税抜き価格</th>
+  			<th>ジャンル</th>
+    		<th>ステータス</th>
+ 		</tr>
+ 	</thead>
+
+  	<tbody>
+  	<% @products.each do |product| %>
+  	<tr>
+  	  <td><%= product.id %></td>
+  	  <td><%= link_to product.name,admin_product_path(product) %></td>
+  	  <td><%= product.price %></td>
+  	  <!-- 削除とりあえず追加後からいらない -->
+  	  <td><%=link_to "Destroy", admin_product_path(product), method: :delete%></td>
+  	<% end %>
+  	</tr>
+  	</tbody>
+	</table>
+  	</div>
+
+
+  </div>
+</div>

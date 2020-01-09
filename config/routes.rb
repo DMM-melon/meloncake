@@ -23,8 +23,9 @@ Rails.application.routes.draw do
 
   resources :customers
 
+  get 'orders/confirm'
   resources :orders
-
+   
   resources :cart_items
 
   resources :products
