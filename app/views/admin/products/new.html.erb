@@ -2,8 +2,8 @@
   <div class='container'>
     <h2>商品新規登録画面</h2>
     <div class="low">
-      <div class='col-xs-5'>
       <%= form_for(@product, url: '/admin/products') do |f| %>
+      <div class='col-xs-5'>
 
       <!-- <input type="file" class="product-img" name="product-img1" required=""> -->
       <!-- <div class="preview"></div> -->
@@ -25,8 +25,9 @@
       </div>
       <div class='col-xs-2'>
       <%= f.submit "新規登録" %>
-      <% end %>
+
       </div>
+      <% end %>
     </div>
   </div>
 </div>
