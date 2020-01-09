@@ -1,25 +1,32 @@
 <div class='body'>
   <div class='container'>
-<h2>商品新規登録画面</h2>
-<div class='col-xs-6'>
-  <%= form_for(@product, url: '/admin/products') do |f| %>
-  <%= f.attachment_field :image %>
+    <h2>商品新規登録画面</h2>
+    <div class="low">
+      <div class='col-xs-5'>
+      <%= form_for(@product, url: '/admin/products') do |f| %>
 
-  <h4>商品名</h4>
-  <%= f.text_field :name %>
+      <!-- <input type="file" class="product-img" name="product-img1" required=""> -->
+      <!-- <div class="preview"></div> -->
+      <%= f.attachment_field :image %>
+      </div>
+      <div class='col-xs-5'>
+      <h4>商品名</h4>
+      <%= f.text_field :name %>
 
-  <h4>商品説明</h4>
-  <%= f.text_area :introduction %>
+      <h4>商品説明</h4>
+      <%= f.text_area :introduction %>
 
-  <h4>ジャンル</h4>
+      <h4>ジャンル</h4>
 
-  <h4>税抜き価格</h4>
-  <%= f.text_field :price %>
+      <h4>税抜き価格</h4>
+      <%= f.text_field :price %>
 
-  <h4>販売ステータス</h4>
-
-  <%= f.submit "新規登録" %>
- <% end %>
-  </div>
+      <h4>販売ステータス</h4>
+      </div>
+      <div class='col-xs-2'>
+      <%= f.submit "新規登録" %>
+      <% end %>
+      </div>
+    </div>
   </div>
 </div>
