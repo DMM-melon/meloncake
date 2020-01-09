@@ -18,13 +18,10 @@ class Admin::ProductsController < ApplicationController
 
   def update
   end
-  private
+
+ private
   def product_params
       params.require(:product).permit(:name, :introduction, :price)
   end
 
-  private
-  def product_params
-      params.require(:product).permit(:name, :introduction, :price)
-  end
 end
