@@ -4,4 +4,5 @@ class Product < ApplicationRecord
   	"__":0,
   	売り切れ:1,販売中:1
   }
+  belongs_to :genre
 end

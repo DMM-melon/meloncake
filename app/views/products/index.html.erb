@@ -4,10 +4,9 @@
 
 		<div class="col-lg-3">
 <h3>ジャンル検索</h3>
-<p>ケーキ</p>
-<p>焼き菓子</p>
-<p>プリン</p>
-<p>キャンディ</p>
+<% @genres.each do |genre| %>
+<%= genre.variety %>
+<% end %>
 		</div>
 
 		<div class="col-lg-9">
