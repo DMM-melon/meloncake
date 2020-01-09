@@ -1,8 +1,5 @@
 class Product < ApplicationRecord
   attachment :image
-  enum genre:{
-  	"__":0,
-  	売り切れ:1,販売中:1
-  }
-  belongs_to :genre
+  enum product_status: { soldout: 0, sale: 1}
+  # ジャンルidカラム必要 アソシエーション関係がうまくいってなかったbelongs_to :genre
 end

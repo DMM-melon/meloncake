@@ -21,6 +21,7 @@
   		<%= f.text_field :price %>
 
   		<p>販売ステータス</p>
+      <%= f.select :product_status, Product.product_statuses.keys.to_a, {} %>
         </div>
         <div class='col-xs-2'>
 		<%= f.submit "変更を保存" %>
