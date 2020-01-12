@@ -1,4 +1,4 @@
-<h2>注文一覧画面</h2>
+<h2>注文履歴一覧画面</h2>
 
 <table class="table table-hover table-inverse">
     <thead>
@@ -15,7 +15,7 @@
     <tr>
         <td><%= link_to order.created.at, order_path %></td>
         <td><%= order.customer_id %></td>
-        <td>個数合計</td>
+        <td>個数合計</td> <!-- なおす！！！！ -->
         <td><%= order.order_status %></td>
     <% end %>
     </tr>

@@ -1,2 +1,13 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<h2>顧客側トップページ<h2>
+
+<h3>ジャンル検索</h3>
+<% @genres.each do |genre| %>
+<%= link_to genre.variety, products_path(genre_id: genre.id) %>
+<% end %>
+
+<h2>商品一覧</h2>
+<% @products.each do |product| %>
+<%= link_to product.image_id, product_path(product) %>
+<%= product.name %>
+<%= product.price %>
+<% end %>

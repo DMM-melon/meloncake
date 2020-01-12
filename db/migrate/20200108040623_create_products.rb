@@ -7,7 +7,6 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.string :image_id
       t.integer :product_status
       t.integer :genre_id
-      t.string :variety
 
       t.timestamps
     end
