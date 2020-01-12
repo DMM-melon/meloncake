@@ -2,16 +2,19 @@ class Admin::ProductsController < ApplicationController
   def index
       @product = Product.new
       @products = Product.all
+      @genres = Genre.all
   end
 
   def new
       @product = Product.new
-      # @product = Product.all
+      # @products = Product.all
   end
 
   def create
-      @product = Product.all
+      #@product = Product.all
       @product = Product.new(product_params)
+      @product.product_status = Product.product_statuses[product_params[:product_status]]
+      @product.genre_id =  Genre.find_by(variety: product_params[:genre_id]).id
       @product.save
       redirect_to admin_products_path
   end
@@ -26,10 +29,7 @@ class Admin::ProductsController < ApplicationController
 
   def update
       @product = Product.find(params[:id])
-      @product.update(product_params)
-      @product.update(product_status: params[:product][:product_status].to_i)
-
-
+      @product.update(update_params)
       redirect_to admin_products_path
   end
 
@@ -42,8 +42,20 @@ class Admin::ProductsController < ApplicationController
 
   private
   def product_params
-      params.require(:product).permit(:name, :introduction, :price, :image)
+      params.require(:product).permit(:name, :introduction, :genre_id, :price, :image, :product_status, :variety)
   end
 
+
+
+  def update_params
+    {}.tap do |p|
+      p["name"] = params[:product][:name]
+      p["introduction"] = params[:product][:introduction]
+      p["genre_id"] = Genre.find_by(variety: params[:product][:genre_id]).id
+      p["product_status"] = params[:product][:product_status]
+      p["price"] = params[:product][:price]
+      p["image"] = params[:product][:image]
+    end
+  end
 end
 
