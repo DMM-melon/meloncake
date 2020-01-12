@@ -1,3 +1,15 @@
 <h1>注文確認画面</h1>
-<h2>支払方法</h2>
-<h2>お届け先</h2>
+<%= form_for @order do |f| %>
+	<%= f.hidden_field :payment, value: @order.payment %>
+	<%= f.hidden_field :postcode, value: @order.postcode%>
+	<%= f.hidden_field :address, value: @order.address %>
+	<%= f.hidden_field :name, value: @order.name %>
+	<h2>支払方法</h2>
+	<%= @order.payment %>
+	<h2>お届け先</h2>
+	<%= @order.postcode %>
+	<%= @order.address %>
+	<%= @order.name %>
+	<br>
+	<%= f.submit "注文確定" %>
+<% end %>
