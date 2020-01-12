@@ -16,6 +16,7 @@
   		<%= f.text_area :introduction %>
 
   		<p>ジャンル</p>
+      <%= f.select :genre_id, Genre.all.map { |str| str.variety } %>
 
   		<p>税抜き価格</p>
   		<%= f.text_field :price %>

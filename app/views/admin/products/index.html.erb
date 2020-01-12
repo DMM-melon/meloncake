@@ -1,8 +1,7 @@
 <div class='body'>
   <div class='container'>
   <p id="notice"></p>
-  <h2>商品一覧画面</h2>
-  <%=link_to "+", new_admin_product_path %>
+  <h2>商品一覧画面 <%= link_to "+", new_admin_product_path %></h2>
 
   	<div class="col-lg-12">
   	<table class="table table-hover table-inverse">
@@ -13,6 +12,8 @@
   			<th>税抜き価格</th>
   			<th>ジャンル</th>
     		<th>ステータス</th>
+        <th>削除</th>
+        <th>税込価格</th>
  		</tr>
  	</thead>
 
@@ -21,9 +22,13 @@
   	<tr>
   	  <td><%= product.id %></td>
   	  <td><%= link_to product.name,admin_product_path(product) %></td>
-  	  <td><%= product.price %></td>
-  	  <!-- 削除とりあえず追加後からいらない -->
-  	  <td><%=link_to "Destroy", admin_product_path(product), method: :delete%></td>
+  	  <td><%= number_to_currency(product.price) %></td>
+      <td><%= product.genre.variety %></td>
+      <td><%= product.product_status %></td>
+      <!-- 削除とりあえず追加後からいらない -->
+      <td><%=link_to "Destroy", admin_product_path(product), method: :delete%></td>
+      <td><%= number_to_currency(product.price * 1.1) %></td>
+
   	<% end %>
   	</tr>
   	</tbody>
