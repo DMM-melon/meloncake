@@ -5,14 +5,24 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @order.address = current_customer.address
+    @order.name = current_customer.first_name
   end
 
   def create
-   
+    order = Order.new(order_params)
+    order.customer_id = current_customer.id
+    order.save
+    if order.save
+      redirect_to orders_thanks_path
+    else
+      @order = Order.new(order_params)
+      render :new
+    end
   end
 
   def confirm
-    # order = Order.new(order_params)
+    @order = Order.new(order_params)
   end
 
   def show
