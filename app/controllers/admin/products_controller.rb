@@ -42,4 +42,4 @@ class Admin::ProductsController < ApplicationController
       params.require(:product).permit(:name, :introduction, :price, :image)
   end
 
- 
+end
