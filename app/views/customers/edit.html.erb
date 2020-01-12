@@ -1,4 +1,6 @@
-<h2>登録情報変更</h2>
+<h2>登録情報変更
+<%= link_to "退会する", bye_customer_path(@customer.id), class: "btn btn-lg btn-primary" %>
+</h2>
  <%= form_for(@customer, url:"/customers/#{@customer.id}") do |f| %>
 <table class="table table-hover table-inverse">
 
