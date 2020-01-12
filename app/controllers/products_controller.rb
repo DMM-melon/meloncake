@@ -12,5 +12,10 @@ class ProductsController < ApplicationController
   	@genres = Genre.where(genre_status: '0')
   	@product = Product.find(params[:id])
     @tax = 1.08
+  	#@cart_item = Cart_item.new
+  end
+
+  def create
   end
 end
+
