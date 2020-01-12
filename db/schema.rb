@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_08_044224) do
+ActiveRecord::Schema.define(version: 2020_01_12_034726) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2020_01_08_044224) do
 
   create_table "genres", force: :cascade do |t|
     t.string "variety"
-    t.integer "genre_status"
+    t.integer "genre_status", limit: 1, default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2020_01_08_044224) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "payment"
+    t.integer "payment", limit: 1, default: 0, null: false
     t.integer "total_price"
     t.integer "order_status"
     t.string "name"
@@ -91,8 +91,10 @@ ActiveRecord::Schema.define(version: 2020_01_08_044224) do
     t.integer "price"
     t.string "image_id"
     t.integer "product_status"
+    t.integer "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "variety"
   end
 
 end
