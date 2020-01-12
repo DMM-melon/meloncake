@@ -8,6 +8,7 @@ class CustomersController < ApplicationController
   end
 
   def bye
+    @customer = Customer.find(params[:id])
   end
 
   def update
@@ -17,6 +18,9 @@ class CustomersController < ApplicationController
   end
 
   def update_dl
+    @customer = Customer.find(params[:id])
+    @customer.destroy
+    redirect_to root_path
   end
 
  private
