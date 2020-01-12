@@ -7,11 +7,9 @@ class Admin::ProductsController < ApplicationController
 
   def new
       @product = Product.new
-      # @products = Product.all
   end
 
   def create
-      #@product = Product.all
       @product = Product.new(product_params)
       @product.product_status = Product.product_statuses[product_params[:product_status]]
       @product.genre_id =  Genre.find_by(variety: product_params[:genre_id]).id

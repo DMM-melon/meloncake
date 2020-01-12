@@ -3,6 +3,7 @@ class CartItemsController < ApplicationController
   end
 
   def index
+      @products = Product.all
   end
 
   def update
