@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_01_12_034726) do
 
-
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -56,6 +55,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_034726) do
     t.string "name"
     t.string "postcode"
     t.string "address"
+    t.integer "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_034726) do
   create_table "order_items", force: :cascade do |t|
     t.integer "quantity"
     t.integer "purchase_price"
-    t.integer "order_item_status"
+    t.integer "order_item_status", limit: 1, default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
