@@ -1,2 +1,23 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+	<h2>会員編集画面</h2>
+		<div class="low">
+			<%= form_for [:admin, @customer] do |f| %>
+			<p>氏名</p>
+			<%= f.text_field :first_name %>
+        	<%= f.text_field :last_name %>
+        	<p>カナ</p>
+        	<%= f.text_field :first_name_kana %>
+            <%= f.text_field :last_name_kana %>
+            <p>郵便番号</p>
+            <%= f.text_field :postcode %>
+            <p>住所</p>
+            <%= f.text_field :address %>
+            <p>電話番号</p>
+            <%= f.telephone_field :phone %>
+            <p>メールアドレス</p>
+            <%= f.email_field :email %>
+
+            <p><%= f.submit "変更を保存する" %></p>
+            <% end %>
+		</div>
+</div>
