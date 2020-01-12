@@ -1,2 +1,54 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<!-- order/show -->
+<h2>注文詳細画面</h2>
+
+<!-- なおす！！ -->
+<h4>購入者</h4>
+
+<p>名前</p>
+
+<h4>配送先</h4>
+
+<p>郵便番号・住所</p>
+<p>配送先氏名</p>
+
+<h4>支払方法</h4>
+
+<p>銀行振り込み</p>
+
+<h4>入金待ち他プルダウンメニュー</h4>
+
+更新ボタン
+
+
+<table class="table table-hover table-inverse">
+    <thead>
+    <tr>
+    <th>商品名</th>
+    <th>単価（税込）</th>
+    <th>数量</th>
+    <th>小計</th>
+    <th>製作ステータス</th>
+    </tr>
+    </thead>
+
+    <tbody>
+<% @order_items.each do |order_item| %>
+    <tr>
+        <td>商品名</td>
+        <td><%= order_item.purchase_price %></td> <!-- 税込にしたい -->
+        <td><%= order_item.quantity %></td>
+        <td>小計</td> <!--書く -->
+        <td><%= f.select :order_item_id, Order_item.order_item_statuses.keys.to_a %></td>
+    <% end %>
+    </tr>
+    </tbody>
+</table>
+
+<h4>商品合計</h4>
+0000円
+
+<h4>送料</h4>
+800円
+
+<h4>請求金額合計</h4>
+0000円

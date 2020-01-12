@@ -2,20 +2,27 @@
 <div class="container">
 	<div class="row">
 
-		<div class="col-lg-3">
-<h3>ジャンル検索</h3>
-<% @genres.each do |genre| %>
-<%= genre.variety %>
-<% end %>
-		</div>
+	<div class="col-lg-3">
+		<h3>ジャンル検索</h3>
+		<% @genres.each do |genre| %>
+		<%= link_to genre.variety, products_path(genre_id: genre.id) %>
+		<% end %>
+	</div>
 
-		<div class="col-lg-9">
-<h2>ケーキ</h2><p>(全x件)</p>
-<p>画像</p>
-<p>商品名</p>
-<p>価格</p>
-		</div>
+	<div class="col-lg-9">
+		<% @genres.each do |genre| %>
+		<h2><%= genre.variety %></h2><p>(全 <%= @count %> 件)</p>
+		<% end %>
+
+		<% @products.each do |product| %>
+		<%= link_to product.image_id, product_path(product) %>
+		<%= product.name %>
+		<%= product.price %>
+		<% end %>
+	</div>
 
 	</div>
 </div>
 
+<!-- 該当ジャンルのみ表示させたいのに表示できない！
+	たぶん無効ステータスのもURLうったら表示できちゃいそう -->

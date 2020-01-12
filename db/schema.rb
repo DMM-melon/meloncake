@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2020_01_08_044224) do
     t.string "postcode"
     t.string "address"
     t.integer "postage"
+    t.integer "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(version: 2020_01_08_044224) do
     t.integer "price"
     t.string "image_id"
     t.integer "product_status"
+    t.integer "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

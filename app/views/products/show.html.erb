@@ -1,2 +1,25 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<!-- 商品詳細 -->
+<div class="container">
+	<div class="row">
+
+	<div class="col-lg-3">
+		<h3>ジャンル検索</h3>
+		<% @genres.each do |genre| %>
+		<%= link_to genre.variety, products_path(genre_id: genre.id) %>
+		<% end %>
+	</div>
+
+	<div class="col-lg-9">
+	<%= @product.image_id %>
+	<%= @product.name %>
+	<%= @product.introduction %>
+	<%= @product.price %> <!-- 税抜き価格のため税込価格に変える必要あり -->
+
+	<%= form_for(@cart_item, url: cart_items_path) do |f| %>
+	<%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10], {include_blank: '個数選択'} %>
+	<%= f.submit "カートに入れる" %>
+	<% end %>
+	</div>
+
+	</div>
+</div>
