@@ -46,6 +46,7 @@ class Admin::ProductsController < ApplicationController
   end
 
 
+
   def update_params
     {}.tap do |p|
       p["name"] = params[:product][:name]
@@ -57,3 +58,4 @@ class Admin::ProductsController < ApplicationController
     end
   end
 end
+
