@@ -3,15 +3,14 @@ class Admin::ProductsController < ApplicationController
       @product = Product.new
       @products = Product.all
       @genres = Genre.all
+      @tax = 1.08
   end
 
   def new
       @product = Product.new
-      # @products = Product.all
   end
 
   def create
-      #@product = Product.all
       @product = Product.new(product_params)
       @product.product_status = Product.product_statuses[product_params[:product_status]]
       @product.genre_id =  Genre.find_by(variety: product_params[:genre_id]).id
@@ -21,6 +20,7 @@ class Admin::ProductsController < ApplicationController
 
   def show
       @product = Product.find(params[:id])
+      @tax = 1.08
   end
 
   def edit

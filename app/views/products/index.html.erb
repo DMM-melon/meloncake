@@ -5,24 +5,20 @@
 	<div class="col-lg-3">
 		<h3>ジャンル検索</h3>
 		<% @genres.each do |genre| %>
-		<%= link_to genre.variety, products_path(genre_id: genre.id) %>
+		<br><%= link_to genre.variety, products_path(genre_id: genre.id) %><br>
 		<% end %>
 	</div>
 
 	<div class="col-lg-9">
-		<% @genres.each do |genre| %>
-		<h2><%= genre.variety %></h2><p>(全 <%= @count %> 件)</p>
-		<% end %>
-
+		<h2><%= @title %></h2><p>(全 <%= @products.count %> 件)</p>
 		<% @products.each do |product| %>
-		<%= link_to product.image_id, product_path(product) %>
-		<%= product.name %>
-		<%= product.price %>
+		<br><%= attachment_image_tag product, :image, :fill, 200, 200 %><br>
+		<br><%= link_to product.name, product_path(product) %><br>
+		<br><%= number_to_currency(product.price * @tax ) %><br>
 		<% end %>
-	</div>
 
+	</div>
 	</div>
 </div>
 
-<!-- 該当ジャンルのみ表示させたいのに表示できない！
-	たぶん無効ステータスのもURLうったら表示できちゃいそう -->
+<!-- たぶん無効ステータスのもURLうったら表示できちゃいそう -->

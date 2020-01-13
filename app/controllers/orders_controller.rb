@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
     if params[:order][:postage] == "3"
       deliveries = Delivery.new(name: order.name, address: order.address, postcode: order.postcode)
       deliveries.save
+
     end
   end
 

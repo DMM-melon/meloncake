@@ -1,23 +1,22 @@
 <!-- order/show -->
 <h2>注文詳細画面</h2>
-
-<!-- なおす！！ -->
+<%= form_for [:admin, @order] do |f| %>
 <h4>購入者</h4>
-
-<p>名前</p>
+<%= @order.customer.name %>
 
 <h4>配送先</h4>
 
 <p>郵便番号・住所</p>
-<p>配送先氏名</p>
+<%= @order.postcode + @order.address %>
+<%= @order.name %>
 
 <h4>支払方法</h4>
+<%= @order.payment %>
 
-<p>銀行振り込み</p>
+<h4>注文ステータス</h4>
+<%= f.select :order_status, Order.order_statuses.keys.to_a, {} %>
 
-<h4>入金待ち他プルダウンメニュー</h4>
-
-更新ボタン
+<%= f.submit "更新" %>
 
 
 <table class="table table-hover table-inverse">
@@ -34,10 +33,10 @@
     <tbody>
 <% @order_items.each do |order_item| %>
     <tr>
-        <td>商品名</td>
-        <td><%= order_item.purchase_price %></td> <!-- 税込にしたい -->
-        <td><%= order_item.quantity %></td>
-        <td>小計</td> <!--書く -->
+        <td><%= @order_item.product.name %></td>
+        <td><%= number_to_currency(@order_item.purchase_price * @tax) %></td>
+        <td><%= @order_item.quantity %></td>
+        <td><%= number_to_currency(@order_item.purchase_price * @tax * @order_item.quantity) %></td>
         <td><%= f.select :order_item_id, Order_item.order_item_statuses.keys.to_a %></td>
     <% end %>
     </tr>
@@ -45,10 +44,10 @@
 </table>
 
 <h4>商品合計</h4>
-0000円
+<%= number_to_currency(order_item.sum(:purchase_price) * @tax) %>
 
 <h4>送料</h4>
-800円
+<%= number_to_currency(@carriage) %>
 
 <h4>請求金額合計</h4>
-0000円
+<%= number_to_currency(order_item.sum(:purchase_price) * @tax * @carriage ) %>
