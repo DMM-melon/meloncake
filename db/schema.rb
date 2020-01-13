@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2020_01_12_034726) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "quantity"
+    t.integer "customer_id"
+    t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_034726) do
     t.string "postcode"
     t.string "address"
     t.integer "postage"
+    t.integer "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
