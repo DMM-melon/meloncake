@@ -7,6 +7,8 @@ class Order < ApplicationRecord
 	belongs_to :customer
 	has_many :order_items
 
+	attr_accessor :address_option
+
 	validates :payment, :postcode, :address, :name, presence: true
 
 end
