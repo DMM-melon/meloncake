@@ -10,7 +10,6 @@ class CartItemsController < ApplicationController
 
   def index
       @carts = CartItem.all
-
   end
 
   def update
