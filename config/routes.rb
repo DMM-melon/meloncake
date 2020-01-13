@@ -37,8 +37,11 @@ Rails.application.routes.draw do
   post 'orders/thanks'
   resources :orders
 
-  resources :cart_items
-
+  resources :cart_items do
+    collection do
+      delete 'destroy_all'
+  end
+  end
   resources :products
 
   root to: 'homes#top'

@@ -27,7 +27,7 @@
       <td><%= product.product_status %></td>
       <!-- 削除とりあえず追加後からいらない -->
       <td><%=link_to "Destroy", admin_product_path(product), method: :delete%></td>
-      <td><%= number_to_currency(product.price * 1.1) %></td>
+      <td><%= number_to_currency(product.price * @tax) %></td>
 
   	<% end %>
   	</tr>

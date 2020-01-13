@@ -12,7 +12,7 @@
 
 		<p>ジャンル <%= @product.genre.variety %> </p>
 
-		<p>税込価格（税抜価格) <%= number_to_currency(@product.price * 1.1) %> (<%= number_to_currency(@product.price) %>)
+		<p>税込価格（税抜価格) <%= number_to_currency(@product.price * @tax) %> (<%= number_to_currency(@product.price) %>)
         </p>
 
 		<p>販売ステータス <%= @product.product_status %> </p>

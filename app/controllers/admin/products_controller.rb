@@ -3,6 +3,7 @@ class Admin::ProductsController < ApplicationController
       @product = Product.new
       @products = Product.all
       @genres = Genre.all
+      @tax = 1.08
   end
 
   def new
@@ -19,6 +20,7 @@ class Admin::ProductsController < ApplicationController
 
   def show
       @product = Product.find(params[:id])
+      @tax = 1.08
   end
 
   def edit
