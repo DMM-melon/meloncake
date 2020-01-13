@@ -3,7 +3,9 @@ class Product < ApplicationRecord
 
   has_many :cart_items
   has_many :order_itmes
-  enum product_status: [:soldout, :sale]
+
+  enum product_status: [:販売中, :売り切れ]
+
   belongs_to :genre
 
 end

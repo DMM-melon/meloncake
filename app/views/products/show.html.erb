@@ -2,18 +2,18 @@
 <div class="container">
 	<div class="row">
 
-	<div class="col-lg-3">
+	<div class="col-lg-2">
 		<h3>ジャンル検索</h3>
 		<% @genres.each do |genre| %>
 		<%= link_to genre.variety, products_path(genre_id: genre.id) %>
 		<% end %>
 	</div>
 
-  <div class='col-xs-5'>
-		<p>商品画像</p>
+  <div class='col-xs-3'>
     	<%= attachment_image_tag @product, :image, :fill, 200, 200 %>
+  </div>
 
-    	<div class='col-xs-5'>
+    	<div class='col-xs-7'>
 		<p>商品名 <%= @product.name %> </p>
 
 		<p>商品説明 <%= @product.introduction %> </p>
@@ -22,7 +22,14 @@
 
 		<p>税込価格（税抜価格) <%= number_to_currency(@product.price * @tax ) %> (<%= number_to_currency(@product.price) %>)
         </p>
-  </div>
-	</div>
-
+        <p>個数選択</p>
+        <p>カートに入れる</p>
+  		</div>
+  		<!--とりあえず表示-->
+  		<%= form_for(@cart_item) do |f| %>
+    	<%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10], {include_blank: '個数選択'} %>
+    	<%= f.hidden_field :product_id, :value => @product.id %>
+    	<%= f.submit "カートに入れる" %>
+    	<% end %>
+<!--@cart_item, url: cart_items_path-->
 </div>
