@@ -9,14 +9,15 @@
 			<label><%= f.radio_button :payment, "銀行振込" %> 銀行振込</label>
 
 		<h2>お届け先</h2>
-			<label><%= f.radio_button :postage, "" %> ご自身の住所 </label><br>
-			<%= @order.address %><br>
-			<%= @order.name %><br>
+			<label><%= f.radio_button :postage, "1" %> ご自身の住所 </label><br>
+			〒<%= current_customer.postcode %><br>
+			<%= current_customer.address %><br>
+			<%= current_customer.first_name + current_customer.last_name %><br>
 
-			<label><%= f.radio_button :postage, "" %> 登録済みの住所から選択 </label><br>
-			<%= f.select :payment, [] %><br>
+			<label><%= f.radio_button :postage, "2" %> 登録済みの住所から選択 </label><br>
+			<%= f.collection_select(:address_option, Delivery.all, :id, :full_address) %><br>
 
-			<label><%= f.radio_button :postage, "" %> 新しいお届け先 </label><br>
+			<label><%= f.radio_button :postage, "3" %> 新しいお届け先 </label><br>
 			<p>郵便番号 ハイフンなし</p>
 			<%= f.text_field :postcode %>
 			<p>住所</p>
