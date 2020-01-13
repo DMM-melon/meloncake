@@ -6,6 +6,7 @@ class Customer < ApplicationRecord
 
   has_many :deliveries
   has_many :orders
+  has_many :cart_items
 	acts_as_paranoid
 
 end

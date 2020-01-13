@@ -3,7 +3,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
     create_table :orders do |t|
       t.integer :payment,default: 0, null: false, limit: 1
       t.integer :total_price
-      t.integer :order_status
+      t.integer :order_status,default: 0, null: false, limit: 1
       t.string :name
       t.string :postcode
       t.string :address

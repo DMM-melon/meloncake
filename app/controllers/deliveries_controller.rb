@@ -1,12 +1,13 @@
 class DeliveriesController < ApplicationController
   def index
     @delivery = Delivery.new
-    @deliveries = Delivery.all
+    @deliveries = current_customer.deliveries.all
   end
 
   def create
     @deliveries = Delivery.all
     @delivery = Delivery.new(delivery_params)
+    @delivery.customer_id =  current_customer.id
     @delivery.save!
     redirect_to deliveries_path
   end
