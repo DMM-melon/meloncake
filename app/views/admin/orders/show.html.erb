@@ -1,23 +1,26 @@
 <!-- order/show -->
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
+
 <h2>注文詳細画面</h2>
-<%= form_for [:admin, @order] do |f| %>
+
 <h4>購入者</h4>
-<%= @order.customer.name %>
+<%= @order.customer.last_name %> <%= @order.customer.first_name %>
 
 <h4>配送先</h4>
-
-<p>郵便番号・住所</p>
 <%= @order.postcode + @order.address %>
 <%= @order.name %>
 
 <h4>支払方法</h4>
 <%= @order.payment %>
 
+<%= form_for [:admin, @order] do |f| %>
 <h4>注文ステータス</h4>
 <%= f.select :order_status, Order.order_statuses.keys.to_a, {} %>
 
 <%= f.submit "更新" %>
-
+<% end %>
 
 <table class="table table-hover table-inverse">
     <thead>
@@ -31,15 +34,15 @@
     </thead>
 
     <tbody>
-<% @order_items.each do |order_item| %>
+    <% @order_items.each do |order_item| %>
     <tr>
         <td><%= @order_item.product.name %></td>
         <td><%= number_to_currency(@order_item.purchase_price * @tax) %></td>
         <td><%= @order_item.quantity %></td>
         <td><%= number_to_currency(@order_item.purchase_price * @tax * @order_item.quantity) %></td>
         <td><%= f.select :order_item_id, Order_item.order_item_statuses.keys.to_a %></td>
-    <% end %>
     </tr>
+
     </tbody>
 </table>
 
@@ -51,3 +54,5 @@
 
 <h4>請求金額合計</h4>
 <%= number_to_currency(order_item.sum(:purchase_price) * @tax * @carriage ) %>
+
+    <% end %>
