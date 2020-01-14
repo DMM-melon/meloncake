@@ -9,7 +9,7 @@ class CartItemsController < ApplicationController
   end
 
   def index
-      @carts = CartItem.all
+      @carts = current_customer.cart_items.all
   end
 
   def update

@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
   def top
   	@genres = Genre.where(genre_status: '0')
-  	@products = Product.joins(:genre).where("product_status = ? and genres.genre_status = ?", 1, 0)
+  	@products = Product.joins(:genre).where("product_status = ? and genres.genre_status = ?", 0, 0)
   	@tax = 1.08
   end
 
