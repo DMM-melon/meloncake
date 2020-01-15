@@ -14,13 +14,15 @@ class OrdersController < ApplicationController
     order.save
     redirect_to orders_thanks_path
     if params[:order][:postage] == "3"
-      deliveries = Delivery.new(name: order.name, address: order.address, postcode: order.postcode)
+      deliveries = Delivery.new(customer_id: order.customer.id, name: order.name, address: order.address, postcode: order.postcode)
       deliveries.save
 
     end
   end
 
   def confirm
+    @postage = 800
+    @carts = CartItem.all
     @order = Order.new(order_params)
     
     if params[:order][:postage] == "1"
