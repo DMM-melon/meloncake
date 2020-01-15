@@ -1,9 +1,15 @@
 <!-- 商品詳細 -->
 <div class="container">
 	<div class="row">
-	<% if flash[:notice] %>
-  	<p><%= flash[:notice] %></p>
-	<% end %>
+
+
+<% if flash[:notice] %>
+<div class="alert alert-warning alert-dismissible fade in" role="alert">
+  <button type="button" data-dismiss="alert" class="close">&times;</button>
+  <p><strong><h3 class="glyphicon glyphicon-bell" aria-hidden="true"></h3>個数が入ってません</strong> 個数を選択してください。</p>
+</div>
+<% end %>
+
 	<div class="col-lg-2">
 		<h3>ジャンル検索</h3>
 		<% @genres.each do |genre| %>

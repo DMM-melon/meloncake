@@ -16,6 +16,7 @@
 		<br><%= link_to product.name, product_path(product) %><br>
 		<br><%= number_to_currency(product.price * @tax ) %><br>
 		<% end %>
+		<%= paginate @products %>
 	</div>
 	</div>
 </div>

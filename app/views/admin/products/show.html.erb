@@ -1,12 +1,15 @@
 <div class="container">
 	<h2>商品詳細</h2>
+	<div class="progress">
+	<div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%;">
+	</div>
+</div>
   	<div class="low">
-  		<div class='col-xs-5'>
-		<p>商品画像</p>
-    	<%= attachment_image_tag @product, :image, :fill, 200, 200 %>
-    	</div>
-    	<div class='col-xs-5'>
-		<p>商品名 <%= @product.name %> </p>
+  		<div class='col-xs-10'>
+  			<div class="media">
+    	<a class="media-left media-top"><%= attachment_image_tag @product, :image, :fill, 200, 200 %></a>
+    	<div class="media-body">
+		<p>商品名 <%= @product.name %></p>
 
 		<p>商品説明 <%= @product.introduction %> </p>
 
@@ -16,10 +19,11 @@
         </p>
 
 		<p>販売ステータス <%= @product.product_status %> </p>
-
+		</div>
+		</div>
 		</div>
 		<div class='col-xs-2'>
-		<%=link_to "編集する", edit_admin_product_path %>
+		<%=link_to "編集する", edit_admin_product_path, class: "btn btn-default" %>
 		</div>
 	</div>
 </div>
