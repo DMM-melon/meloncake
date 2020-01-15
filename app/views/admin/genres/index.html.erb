@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
+
 <h2>ジャンル追加・一覧画面</h2>
 
 <% if @genre.errors.any? %>
