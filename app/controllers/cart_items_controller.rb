@@ -1,17 +1,24 @@
 class CartItemsController < ApplicationController
+  before_action :authenticate_customer!
+  skip_before_action :authenticate_customer!, only: [:index]
   def create
       # cart = CartItem.new(cart_params)
       # cart.customer_id = current_customer.id
       #3.4行目を6行目にまとめた
-      cart = current_customer.cart_items.find_by(product_id: params[:cart_item][:product_id])
-      if cart
-        cart.quantity += params[:cart_item][:quantity].to_i
+#      if params[:cart_item][:quantity]
+      if params[:cart_item][:quantity].present?
+        cart = current_customer.cart_items.find_by(product_id: params[:cart_item][:product_id])
+        if cart
+          cart.quantity += params[:cart_item][:quantity].to_i
+        else
+          cart = current_customer.cart_items.new(cart_params)
+        end
+        cart.save
+        redirect_to cart_items_path
       else
-        cart = current_customer.cart_items.new(cart_params)
+          flash[:notice] ="個数を選択してください。"
+          redirect_to product_path(params[:cart_item][:product_id])
       end
-      cart.save
-
-      redirect_to cart_items_path
   end
 
   def index
