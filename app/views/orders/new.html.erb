@@ -9,7 +9,7 @@
 			<label><%= f.radio_button :payment, "銀行振込" %> 銀行振込</label>
 
 		<h2>お届け先</h2>
-			<label><%= f.radio_button :postage, "1" %> ご自身の住所 </label><br>
+			<label><%= f.radio_button :postage, "1" ,{:checked => true} %> ご自身の住所</label><br>
 			〒<%= current_customer.postcode %><br>
 			<%= current_customer.address %><br>
 			<%= current_customer.first_name + current_customer.last_name %><br>
