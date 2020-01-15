@@ -12,7 +12,7 @@ class Admin::OrdersController < ApplicationController
 
   def show
   	@order = Order.find(params[:id])
-  	@order_items = @order.order_items.all
+  	@order_items = OrderItem.all
     @tax = 1.08
     @carriage = 800
   end
@@ -20,10 +20,12 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.update(order_params)
-    redirect_to admin_orders_path
+    flash[:notice] = "● 注文ステータス更新しました"
+    redirect_to admin_order_path(@order)
   end
-end
 
-# <%= link_to "注文履歴", admin_orders_path, {button: 1} %> ヘッダーに記載
-# <%= link_to "会員名", admin_orders_path, {button: 2} %> 会員詳細に記載
-# <%= link_to "件数", admin_orders_path %> トップページに記載
+  private
+    def order_params
+        params.require(:order).permit(:order_status)
+    end
+end
