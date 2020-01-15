@@ -1,7 +1,9 @@
 <!-- 商品詳細 -->
 <div class="container">
 	<div class="row">
-
+	<% if flash[:notice] %>
+  	<p><%= flash[:notice] %></p>
+	<% end %>
 	<div class="col-lg-2">
 		<h3>ジャンル検索</h3>
 		<% @genres.each do |genre| %>
