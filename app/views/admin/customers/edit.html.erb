@@ -16,8 +16,22 @@
             <%= f.telephone_field :phone %>
             <p>メールアドレス</p>
             <%= f.email_field :email %>
+            <p>会員ステータス</p>
+
+            <% if @customer.deleted_at.nil? %>
+             <label><%= f.radio_button :deleted_at, :true, {:checked => true} %>現会員</label>
+             <label><%= f.radio_button :deleted_at, :false %>退会済み</label>
+
+             <% else %>
+
+            <label><%= f.radio_button :deleted_at, :true %>現会員</label>
+
+            <label><%= f.radio_button :deleted_at, :false, {:checked => true} %>退会済み</label>
+
+            <% end %>
 
             <p><%= f.submit "変更を保存する" %></p>
             <% end %>
 		</div>
 </div>
+

@@ -2,7 +2,14 @@
 	<h2>会員詳細</h2>
 	<div class="low">
 		<div class='col-xs-5'>
-			<p>顧客ID <%= @customer.id %></p>
+			<p>顧客ID <%= @customer.id %>
+
+			<% if @customer.deleted_at.nil? %>
+              <%= "有効会員" %>
+            <% else %>
+              <%= "退会済み" %>
+            <% end %>
+			</p>
 			<p>氏名 <%= @customer.first_name %>
 				<%= @customer.last_name %></p>
 			<p>フリガナ <%= @customer.first_name_kana %>
