@@ -1,58 +1,95 @@
-<!-- order/show -->
 <% if flash[:notice] %>
     <p><%= flash[:notice] %></p>
 <% end %>
 
-<h2>注文詳細画面</h2>
+<div class="container">
+<h1>注文詳細画面</h1>
+<% sum = 0 %>
 
-<h4>購入者</h4>
-<%= @order.customer.last_name %> <%= @order.customer.first_name %>
+    <div class="row">
 
-<h4>配送先</h4>
-<%= @order.postcode + @order.address %>
-<%= @order.name %>
+        <div class="col-lg-7">
+        <table class="table table-bordered">
+        <thead>
+            <tr><h2>注文情報</h2></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>購入者</td>
+                <td><%= @order.customer.last_name %> <%= @order.customer.first_name %></td>
+            </tr>
 
-<h4>支払方法</h4>
-<%= @order.payment %>
+            <tr>
+                <td>配送先</td>
+                <td>〒<%= @order.postcode %>   <%= @order.address %><br><%= @order.name %></td>
+            </tr>
 
-<%= form_for [:admin, @order] do |f| %>
-<h4>注文ステータス</h4>
-<%= f.select :order_status, Order.order_statuses.keys.to_a, {} %>
+            <tr>
+                <td>支払方法</td>
+                <td><%= @order.payment %></td>
+            </tr>
 
-<%= f.submit "更新" %>
-<% end %>
+            <%= form_for [:admin, @order] do |f| %>
+            <tr>
+                <td>注文ステータス</td>
+                <td><%= f.select :order_status, Order.order_statuses.keys.to_a, {} %>
+                <%= f.submit "更新" %></td>
+            </tr>
+            <% end %>
+        </tbody>
+        </table>
+        </div>
 
-<table class="table table-hover table-inverse">
-    <thead>
-    <tr>
-    <th>商品名</th>
-    <th>単価（税込）</th>
-    <th>数量</th>
-    <th>小計</th>
-    <th>製作ステータス</th>
-    </tr>
-    </thead>
+        <div class="col-lg-5">
+        <table class="table table-bordered">
+        <thead>
+            <tr><h2>請求情報</h2></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>商品合計</td>
+                <td><%= number_to_currency(sum * @tax) %></td>
+            </tr>
 
-    <tbody>
-    <% @order_items.each do |order_item| %>
-    <tr>
-        <td><%= @order_item.product.name %></td>
-        <td><%= number_to_currency(@order_item.purchase_price * @tax) %></td>
-        <td><%= @order_item.quantity %></td>
-        <td><%= number_to_currency(@order_item.purchase_price * @tax * @order_item.quantity) %></td>
-        <td><%= f.select :order_item_id, Order_item.order_item_statuses.keys.to_a %></td>
-    </tr>
+            <tr>
+                <td>送料</td>
+                <td><%= number_to_currency(@carriage) %></td>
+            </tr>
 
-    </tbody>
-</table>
+            <tr>
+                <td>請求金額合計</td>
+                <td><%= number_to_currency(sum * @tax + @carriage) %></td>
+            </tr>
+        </tbody>
+        </table>
+        </div>
 
-<h4>商品合計</h4>
-<%= number_to_currency(order_item.sum(:purchase_price) * @tax) %>
+        <div class="col-lg-12">
+        <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>製作ステータス</th>
+        </tr>
+        </thead>
 
-<h4>送料</h4>
-<%= number_to_currency(@carriage) %>
-
-<h4>請求金額合計</h4>
-<%= number_to_currency(order_item.sum(:purchase_price) * @tax * @carriage ) %>
-
-    <% end %>
+        <tbody>
+        <% @order_items.each do |order_item| %>
+        <tr>
+            <td><%= order_item.name %></td>
+            <td><%= number_to_currency(order_item.purchase_price * @tax) %></td>
+            <td><%= order_item.quantity %></td>
+            <td><%= number_to_currency(order_item.purchase_price * @tax * @order_item.quantity) %></td>
+            <td><%= f.select :order_item_status, Order_item.order_item_statuses.keys.to_a, {}  %><%= f.submit "更新" %></td>
+            <% sub_total = order_item.purchase_price.to_i * @order_item.quantity.to_i %>
+            <% sum += sub_total.to_i %>
+        </tr>
+        <% end %>
+        </tbody>
+        </table>
+        </div>
+    </div>
+</div>
