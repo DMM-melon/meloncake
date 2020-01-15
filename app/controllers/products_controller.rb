@@ -3,7 +3,6 @@ class ProductsController < ApplicationController
   	@genres = Genre.where(genre_status: '0')
     @tax = 1.08
 
-
     @genre = Genre.find_by(id: params[:genre_id], genre_status: '0')
     if @genre
       @title = @genre.variety

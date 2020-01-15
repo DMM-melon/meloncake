@@ -1,17 +1,62 @@
-<h1>注文確認画面</h1>
-<%= form_for @order do |f| %>
-	<%= f.hidden_field :payment, value: @order.payment %>
-	<%= f.hidden_field :postcode, value: @order.postcode%>
-	<%= f.hidden_field :address, value: @order.address %>
-	<%= f.hidden_field :name, value: @order.name %>
-	<%= f.hidden_field :postage, value: @order.postage %>
+<div class="container">
+	<h1>注文確認画面</h1>
+	<div class="row">
+		<div class="col-lg-8">
+			<table class="table table-bordered">
+				<thead>
+					<th>商品名</th>
+					<th>単価（税込）</th>
+					<th>数量</th>
+					<th>小計</th>
+				</thead>
+				<tbody>
+					<% @carts.each do |cart| %>
+		    			<tr>
+		      				<td><%= attachment_image_tag cart.product, :image, :fill, 30, 30 %><%= cart.product.name %></td>
+		      				<td><%= number_to_currency(cart.product.price) %></td>
+		     				 <td><%= cart.quantity %></td>
+		      				<td><%= number_to_currency(cart.product.price * cart.quantity) %></td>
+		      			</tr>
+		    		<% end %>
+				</tbody>
+			</table>
+		</div>
+		<div class="col-lg-4">
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td>送料</td>
+						<td><%= @postage %></td>
+					</tr>
+					<tr>
+						<td>商品合計</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>請求金額</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-	<h2>支払方法</h2>
-	<%= @order.payment %>
-	<h2>お届け先</h2>
-	<%= @order.postcode %>
-	<%= @order.address %>
-	<%= @order.name %>
-	<br>
-	<%= f.submit "注文確定" %>
-<% end %>
+	</div>
+
+
+	<%= form_for @order do |f| %>
+		<%= f.hidden_field :payment, value: @order.payment %>
+		<%= f.hidden_field :postcode, value: @order.postcode%>
+		<%= f.hidden_field :address, value: @order.address %>
+		<%= f.hidden_field :name, value: @order.name %>
+		<%= f.hidden_field :postage, value: @order.postage %>
+
+		<h2>支払方法</h2>
+		<%= @order.payment %>
+		<h2>お届け先</h2>
+		<%= @order.postcode %>
+		<%= @order.address %>
+		<%= @order.name %>
+		<br>
+		<%= f.submit "注文確定" %>
+	<% end %>
+</div>
