@@ -10,31 +10,34 @@
 					<th>小計</th>
 				</thead>
 				<tbody>
+					<% sum = 0 %>
 					<% @carts.each do |cart| %>
 		    			<tr>
 		      				<td><%= attachment_image_tag cart.product, :image, :fill, 30, 30 %><%= cart.product.name %></td>
-		      				<td><%= number_to_currency(cart.product.price) %></td>
+		      				<td><%= number_to_currency(cart.product.price * @tax) %></td>
 		     				 <td><%= cart.quantity %></td>
-		      				<td><%= number_to_currency(cart.product.price * cart.quantity) %></td>
+		      				<td><%= number_to_currency(cart.product.price * cart.quantity * @tax) %></td>
 		      			</tr>
+		      			<% sub_total = cart.product.price.to_i * cart.quantity.to_i %>
+      						<% sum += sub_total.to_i %>
 		    		<% end %>
 				</tbody>
 			</table>
 		</div>
 		<div class="col-lg-4">
-			<table class="table table-bordered">
+			<table class="table table-bordered" > 
 				<tbody>
 					<tr>
 						<td>送料</td>
-						<td><%= @postage %></td>
+						<td><%= number_to_currency(@postage) %></td>
 					</tr>
 					<tr>
 						<td>商品合計</td>
-						<td></td>
+						<td><%= number_to_currency(sum * @tax) %></td>
 					</tr>
 					<tr>
 						<td>請求金額</td>
-						<td></td>
+						<td><%= number_to_currency(@postage + sum * @tax) %></td>
 					</tr>
 				</tbody>
 			</table>
@@ -49,6 +52,7 @@
 		<%= f.hidden_field :address, value: @order.address %>
 		<%= f.hidden_field :name, value: @order.name %>
 		<%= f.hidden_field :postage, value: @order.postage %>
+		<%= f.hidden_field :total_price, value: @postage + sum * @tax %>
 
 		<h2>支払方法</h2>
 		<%= @order.payment %>

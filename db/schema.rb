@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2020_01_12_034726) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer "quantity"
+    t.string "name"
     t.integer "purchase_price"
     t.integer "order_item_status", limit: 1, default: 0, null: false
     t.integer "order_id"
