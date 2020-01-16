@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+    <p><%= flash[:notice] %></p>
+<% end %>
+
 <div class='body'>
   <div class='container'>
     <h2>商品新規登録画面</h2>
@@ -10,13 +14,13 @@
       <%= f.attachment_field :image %>
       </div>
       <div class='col-xs-5'>
-      <h4>商品名 <%= f.text_field :name %> </h4>
+      <h4>商品名 <%= f.text_field :name,:size => 15 %> </h4>
 
-      <h4>商品説明 <%= f.text_area :introduction %> </h4>
+      <h4>商品説明 <%= f.text_area :introduction, :size => 15 %> </h4>
 
       <h4>ジャンル  <%= f.select :genre_id, Genre.all.map { |str| str.variety } %></h4>
 
-      <h4>税抜き価格 <%= f.text_field :price %> 円 </h4>
+      <h4>税抜き価格 <%= f.text_field :price, :size => 15 %> 円 </h4>
 
       <h4>販売ステータス <%= f.select :product_status, Product.product_statuses.keys.to_a, {} %>
       </h4>

@@ -11,11 +11,17 @@
 
 	<div class="col-lg-9">
 		<h2><%= @title %></h2><p>(全 <%= @products.count %> 件)</p>
+		<div class="flex_test-box">
 		<% @products.each do |product| %>
-		<br><%= attachment_image_tag product, :image, :fill, 200, 200 %><br>
-		<br><%= link_to product.name, product_path(product) %><br>
-		<br><%= number_to_currency(product.price * @tax ) %><br>
+		<div class="flex_test-item">
+		<%= link_to product_path(product) do %><br>
+		<%= attachment_image_tag product, :image, :fill, 200, 200 %><br>
 		<% end %>
+		<br><%= product.name %><br>
+		<br><%= number_to_currency(product.price * @tax ) %><br>
+		</div>
+		<% end %>
+		</div>
 
 	</div>
 	</div>

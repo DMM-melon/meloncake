@@ -6,6 +6,8 @@ class Product < ApplicationRecord
 
   enum product_status: [:販売中, :売り切れ]
 
+  validates :name, :image, :introduction, :price, presence: true
+
   belongs_to :genre
 
   ## validates :quantity, uniqueness: true
