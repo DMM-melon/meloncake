@@ -7,7 +7,7 @@
 				<tbody>
 					<tr>
 						<td>注文日</td>
-						<td><%= @order.created_at %></td>
+						<td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
 					</tr>
 					<tr>
 						<td>配送先</td>
@@ -30,15 +30,19 @@
 				<tbody>
 					<tr>
 						<td>商品合計</td>
-						<td>1,500</td>
+						<td><% sum = 0 %>
+							<% @order.order_items.each do |i| %>
+                			<% sum += i.total_price %>
+            				<% end %>
+            				<%= number_to_currency(sum) %></td>
 					</tr>
 					<tr>
 						<td>配送料</td>
-						<td>800</td>
+						<td><%= number_to_currency(@postage) %></td>
 					</tr>
 					<tr>
 						<td>ご請求額</td>
-						<td>2,300</td>
+						<td><%= number_to_currency(sum + @postage) %></td>
 					</tr>
 				</tbody>
 			</table>
@@ -53,7 +57,14 @@
 			<th>小計</th>
 		</thead>
 		<tbody>
-			
+			<% @order_items.each do |i| %>
+				<tr>
+					<td><%= i.name %></td>
+					<td><%= number_to_currency(i.purchase_price) %></td>
+					<td><%= i.quantity %></td>
+					<td><%= number_to_currency(i.purchase_price * i.quantity) %></td>
+				</tr>
+			<% end %>
 		</tbody>
 	</table>
 </div>
