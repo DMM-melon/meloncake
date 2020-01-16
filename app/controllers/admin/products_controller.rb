@@ -15,8 +15,12 @@ class Admin::ProductsController < ApplicationController
       @product = Product.new(product_params)
       @product.product_status = Product.product_statuses[product_params[:product_status]]
       @product.genre_id =  Genre.find_by(variety: product_params[:genre_id]).id
-      @product.save
-      redirect_to admin_products_path
+      if @product.save
+         redirect_to admin_products_path
+      else
+         flash[:notice] = "すべて埋めてね!!"
+         redirect_to new_admin_product_path
+      end
   end
 
   def show
@@ -34,7 +38,7 @@ class Admin::ProductsController < ApplicationController
       redirect_to admin_products_path
   end
 
-# とりあえず削除つけた後からいらない
+  # とりあえず削除つけた後からいらない
   def destroy
       @product = Product.find(params[:id])
       @product.destroy

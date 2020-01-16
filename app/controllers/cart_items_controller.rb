@@ -24,15 +24,13 @@ class CartItemsController < ApplicationController
   def index
       @carts = current_customer.cart_items.all
       @tax = 1.08
+      @sum = 0
   end
 
   def update
       @cart_item = CartItem.find(params[:id])
-
       @cart_item.quantity = params[:cart_item][:quantity]
-
       @cart_item.save
-
       redirect_to cart_items_path
   end
 
