@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
        quantity:  item.quantity,
        purchase_price:  item.product.price * tax,
        name:  item.product.name,
-       order_item_status: "製作待ち",
+       order_item_status: "着手不可",
        product_id: item.product.id
         )
     end

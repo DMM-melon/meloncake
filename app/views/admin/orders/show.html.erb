@@ -16,7 +16,7 @@
         <tbody>
             <tr>
                 <td>購入者</td>
-                <td><%= @order.customer.last_name %> <%= @order.customer.first_name %></td>
+                <td><%= link_to @name, admin_customer_path(@order.customer) %></td>
             </tr>
 
             <tr>
@@ -29,36 +29,12 @@
                 <td><%= @order.payment %></td>
             </tr>
 
-            <%= form_for [:admin, @order] do |f| %>
             <tr>
+            <%= form_for [:admin, @order] do |f| %>
                 <td>注文ステータス</td>
                 <td><%= f.select :order_status, Order.order_statuses.keys.to_a, {} %>
                 <%= f.submit "更新" %></td>
-            </tr>
             <% end %>
-        </tbody>
-        </table>
-        </div>
-
-        <div class="col-lg-5">
-        <table class="table table-bordered">
-        <thead>
-            <tr><h2>請求情報</h2></tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>商品合計</td>
-                <td><%= number_to_currency(sum * @tax) %></td>
-            </tr>
-
-            <tr>
-                <td>送料</td>
-                <td><%= number_to_currency(@carriage) %></td>
-            </tr>
-
-            <tr>
-                <td>請求金額合計</td>
-                <td><%= number_to_currency(sum * @tax + @carriage) %></td>
             </tr>
         </tbody>
         </table>
@@ -80,14 +56,42 @@
         <% @order_items.each do |order_item| %>
         <tr>
             <td><%= order_item.name %></td>
-            <td><%= number_to_currency(order_item.purchase_price * @tax) %></td>
+            <td><%= number_to_currency(order_item.purchase_price) %></td>
             <td><%= order_item.quantity %></td>
-            <td><%= number_to_currency(order_item.purchase_price * @tax * @order_item.quantity) %></td>
-            <td><%= f.select :order_item_status, Order_item.order_item_statuses.keys.to_a, {}  %><%= f.submit "更新" %></td>
-            <% sub_total = order_item.purchase_price.to_i * @order_item.quantity.to_i %>
+            <td><%= number_to_currency(order_item.purchase_price * order_item.quantity) %></td>
+            <td><%= form_for [:admin, order_item] do |f| %>
+                <%= f.select :order_item_status, OrderItem.order_item_statuses.keys.to_a, {} %>
+                <%= f.submit "更新" %>
+                <% end %>
+            </td>
+            <% sub_total = order_item.purchase_price.to_i * order_item.quantity.to_i %>
             <% sum += sub_total.to_i %>
         </tr>
         <% end %>
+        </tbody>
+        </table>
+        </div>
+
+        <div class="col-lg-5">
+        <table class="table table-bordered">
+        <thead>
+            <tr><h2>請求情報</h2></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>商品合計</td>
+                <td><%= number_to_currency(sum) %></td>
+            </tr>
+
+            <tr>
+                <td>送料</td>
+                <td><%= number_to_currency(@carriage) %></td>
+            </tr>
+
+            <tr>
+                <td>請求金額合計</td>
+                <td><%= number_to_currency(sum + @carriage) %></td>
+            </tr>
         </tbody>
         </table>
         </div>
