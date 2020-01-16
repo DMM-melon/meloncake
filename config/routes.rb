@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       get 'bye'
     end
   end
-
+#変更しないとエラー
   get 'orders/confirm'
   post 'orders/confirm'
   get 'orders/thanks'
