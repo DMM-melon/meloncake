@@ -21,27 +21,35 @@ body {
     display: flex;              /* フレックスボックスにする */
     justify-content:space-around;
 }
- 
+
 .flex_test-item {
     padding: 10px;
     color:  #fff;               /* 文字色 */
     margin:  10px;              /* 外側の余白 */
     border-radius:  5px;        /* 角丸指定 */
     width: 26.5%;                 /* 幅指定 */
+    border:  solid 1px;
 }
- 
+
 .flex_test-item:nth-child(1) {
-    background-color:  #2196F3; /* 背景色指定 */
+    background-color:  #FFDBFF;
+    opacity: 0.8;
 }
- 
+
 .flex_test-item:nth-child(2) {
-    background-color:  #4CAF50; /* 背景色指定 */
+    background-color:  #FFDBED;
+    opacity: 0.8;
 }
- 
+
 .flex_test-item:nth-child(3) {
-    background-color: #3F51B5; /* 背景色指定 */
+    background-color: #FFE5E5;
+    opacity: 0.8;
 }
- 
-.flex_test-item:nth-child(4) {
-    background-color:  #00BCD4; /* 背景色指定 */
+
+.main {
+height: 800px;
+background: linear-gradient(to top, rgba(217, 175, 217, 0.7) 0%, rgba(151, 217, 225, 0.7) 100%),url(img2.jpg);
+background-attachment: scroll;
+    background-size: auto
 }
+
