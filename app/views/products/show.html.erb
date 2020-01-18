@@ -30,8 +30,7 @@
 
 		<p>税込価格（税抜価格) <%= number_to_currency(@product.price * @tax ) %> (<%= number_to_currency(@product.price) %>)
         </p>
-        <p>個数選択</p>
-        <p>カートに入れる</p>
+
   		</div>
   		<!--とりあえず表示-->
   		<%= form_for(@cart_item) do |f| %>

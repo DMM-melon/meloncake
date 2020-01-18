@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_customer!
   before_action :no_cart_items, only: [:confirm]
 
   def index
-    @orders = Order.all.order(created_at: :desc)
+    @orders = current_customer.orders.all.order(created_at: :desc)
     @tax = 1.08
   end
 
@@ -49,7 +50,7 @@ class OrdersController < ApplicationController
     if params[:order][:postage] == "1"
       @order.postcode = current_customer.postcode
       @order.address = current_customer.address
-      @order.name = current_customer.first_name + current_customer.last_name
+      @order.name = current_customer.last_name + current_customer.first_name
     elsif params[:order][:postage] == "2"
       delivery = Delivery.find(params[:order][:address_option])
       @order.postcode = delivery.postcode
@@ -78,7 +79,11 @@ class OrdersController < ApplicationController
   def show
     @tax = 1.08
     @postage = 800
-    @order = Order.find(params[:id])
+    #@order = Order.find(params[:id])
+    @order = Order.find_by(id:params[:id])
+    if @order.customer_id != current_customer.id
+      redirect_to orders_path
+    end
     @order_items = @order.order_items.all
   end
 
