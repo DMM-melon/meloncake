@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   resources :products
 
   root to: 'homes#top'
+  post 'homes/search'
   get 'homes/about'
   delete 'customers/:id', to: 'customers#update_dl'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
