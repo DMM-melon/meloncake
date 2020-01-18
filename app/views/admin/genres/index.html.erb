@@ -1,19 +1,17 @@
-<% if flash[:notice] %>
-    <p><%= flash[:notice] %></p>
+<% if flash[:alert] %>
+<div class="alert alert-warning alert-dismissible fade in" role="alert">
+  <button type="button" data-dismiss="alert" class="close">&times;</button>
+  <h4><%= flash[:alert] %></h4>
+</div>
 <% end %>
 
-<h2>ジャンル追加・一覧画面</h2>
+<% if flash[:notice] %>
+  <h4><%= flash[:notice] %></h4>
+<% end %>
 
-<% if @genre.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @genre.errors.count %> errors prohibited this obj from being saved:</h2>
-      <ul>
-      <% @genre.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+
+<h2>ジャンル追加・一覧</h2>
+
 <h3>ジャンル追加</h3>
 <%= form_for [:admin, @genre] do |f| %>
   <label>ジャンル<%= f.text_field :variety %></label>
@@ -21,7 +19,8 @@
   <label><%= f.radio_button :genre_status, "無効" %> 無効 </label>
   <%= f.submit "追加" %>
 <% end %>
-
+<br>
+<br>
 
 <div class = "col-lg-5">
 <table class="table table-hover table-inverse">

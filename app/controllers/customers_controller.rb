@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_action :authenticate_customer!
   def show
     @customer = Customer.find(params[:id])
   end
@@ -9,6 +10,10 @@ class CustomersController < ApplicationController
 
   def bye
     @customer = Customer.find(params[:id])
+  end
+
+  def index
+    redirect_to root_path
   end
 
   def changepass

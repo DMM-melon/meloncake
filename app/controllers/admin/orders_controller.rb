@@ -1,4 +1,5 @@
 class Admin::OrdersController < ApplicationController
+  before_action :authenticate_admin!
   def index
 
     if params[:button].to_i == 1 # ヘッダーから
@@ -15,7 +16,7 @@ class Admin::OrdersController < ApplicationController
   	@order = Order.find(params[:id])
   	@order_items = @order.order_items.all
     @carriage = 800
-    @name = @order.customer.first_name + " " + @order.customer.last_name
+    @name = @order.customer.last_name + " " + @order.customer.first_name
   end
 
   def update

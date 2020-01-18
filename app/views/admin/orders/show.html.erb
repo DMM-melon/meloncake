@@ -9,6 +9,7 @@
     <div class="row">
 
         <div class="col-lg-7">
+        <%= form_for [:admin, @order] do |f| %>
         <table class="table table-bordered">
         <thead>
             <tr><h2>注文情報</h2></tr>
@@ -30,14 +31,13 @@
             </tr>
 
             <tr>
-            <%= form_for [:admin, @order] do |f| %>
                 <td>注文ステータス</td>
                 <td><%= f.select :order_status, Order.order_statuses.keys.to_a, {} %>
                 <%= f.submit "更新" %></td>
-            <% end %>
             </tr>
         </tbody>
         </table>
+        <% end %>
         </div>
 
         <div class="col-lg-12">

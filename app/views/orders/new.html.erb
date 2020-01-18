@@ -12,7 +12,7 @@
 			<label><%= f.radio_button :postage, "1" ,{:checked => true} %> ご自身の住所</label><br>
 			〒<%= current_customer.postcode %><br>
 			<%= current_customer.address %><br>
-			<%= current_customer.first_name + current_customer.last_name %><br>
+			<%= current_customer.last_name + current_customer.first_name %><br>
 
 			<label><%= f.radio_button :postage, "2" %> 登録済みの住所から選択 </label><br>
 			<%= f.collection_select(:address_option, current_customer.deliveries, :id, :full_address) %><br>

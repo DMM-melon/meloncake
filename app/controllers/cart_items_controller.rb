@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
   before_action :authenticate_customer!
-  skip_before_action :authenticate_customer!, only: [:index]
+  #skip_before_action :authenticate_customer!, only: [:index]
   def create
       # cart = CartItem.new(cart_params)
       # cart.customer_id = current_customer.id
