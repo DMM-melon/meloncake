@@ -29,12 +29,12 @@ class OrdersController < ApplicationController
 
     if current_customer.cart_items == []
       redirect_to cart_items_path
-    else 
+    else
       order.save
       current_customer.cart_items.destroy_all
       redirect_to orders_thanks_path
     end
-    if params[:order][:postage] == "3" 
+    if params[:order][:postage] == "3"
       deliveries = Delivery.new(customer_id: order.customer.id, name: order.name, address: order.address, postcode: order.postcode)
       deliveries.save
     end
@@ -46,7 +46,7 @@ class OrdersController < ApplicationController
     @carts = current_customer.cart_items
     @order = Order.new(order_params)
 
-    
+
     if params[:order][:postage] == "1"
       @order.postcode = current_customer.postcode
       @order.address = current_customer.address
@@ -68,12 +68,12 @@ class OrdersController < ApplicationController
        if    params[:order][:name].blank?
           @error_msg += "　宛名を入力してください"
        end
-       
+
         if @error_msg != ""
           render :new
         end
     end
-    
+
   end
 
   def show
@@ -93,7 +93,7 @@ class OrdersController < ApplicationController
   private
   def order_params
       params.require(:order).permit(:payment, :name, :postcode, :address, :postage, :total_price)
-      
+
   end
 
   def no_cart_items
