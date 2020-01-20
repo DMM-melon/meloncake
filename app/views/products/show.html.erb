@@ -1,7 +1,7 @@
 <!-- 商品詳細 -->
 <div class="main">
 <div class="container">
-	<div class="row">
+  <div class="row">
 
 
 <% if flash[:notice] %>
@@ -11,35 +11,48 @@
 </div>
 <% end %>
 
-	<div class="col-lg-2">
-		<h3>ジャンル検索</h3>
-		<% @genres.each do |genre| %>
-		<br><%= link_to genre.variety, products_path(genre_id: genre.id) %><br>
-		<% end %>
-	</div>
+   <div class="col-lg-3">
+    <div class="genre-box">
+    <div class="title">
+      <h4>ジャンル検索</h4>
+    </div>
+    <div class="genres">
+      <% @genres.each do |genre| %>
+      <br><%= link_to genre.variety, products_path(genre_id: genre.id) %><br>
+      <% end %>
+    </div>
+    </div>
 
-  <div class='col-lg-3'>
-    	<%= attachment_image_tag @product, :image, :fill, 200, 200 %>
+    <div class="search-box">
+    <div class="title">
+      <h4>商品検索</h4>
+    </div>
+　　　　　<%= form_tag(homes_search_path,:method => 'post') do %>
+         <%= text_field_tag :search %>
+         <%= submit_tag '検索', :name => nil %>
+　　　　　<% end %>
+    </div>
   </div>
 
-    	<div class='col-lg-7'>
-		<p>商品名 <%= @product.name %> </p>
+  <div class='image-show col-lg-3'>
+      <%= attachment_image_tag @product, :image, :fill, 200, 200 %>
+  </div>
 
-		<p>商品説明 <%= @product.introduction %> </p>
-
-		<p>ジャンル <%= @product.genre.variety %> </p>
-
-		<p>税込価格（税抜価格) <%= number_to_currency(@product.price * @tax ) %> (<%= number_to_currency(@product.price) %>)
-        </p>
-
-  		</div>
-  		<!--とりあえず表示-->
-  		<%= form_for(@cart_item) do |f| %>
-    	<%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10], {include_blank: '個数選択'} %>
-    	<%= f.hidden_field :product_id, :value => @product.id %>
-    	<%= f.submit "カートに入れる" %>
+  <div class='product-data col-lg-6'>
+    <table class="table table-inverse">
+      <tr><th>商品名</th><td><%= @product.name %></td></tr>
+      <tr><th>商品説明</th><td><%= @product.introduction %></td></tr>
+      <tr><th>ジャンル</th><td><%= @product.genre.variety %></td></tr>
+      <tr><th>税込価格（税抜価格)</th><td><%= number_to_currency(@product.price * @tax ) %> (<%= number_to_currency(@product.price) %>)</td></tr>
+    </table>
+    <div class="cart-in">
+      <%= form_for(@cart_item) do |f| %>
+      <%= f.select :quantity, [1,2,3,4,5,6,7,8,9,10], {include_blank: '個数選択'} %>
+      <%= f.hidden_field :product_id, :value => @product.id %>
+      <%= f.submit "カートに入れる" %>
+      <% end %>
     </div>
-    	<% end %>
-    </div>
-<!--@cart_item, url: cart_items_path-->
+  </div>
+  </div>
+</div>
 </div>

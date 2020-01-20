@@ -7,11 +7,27 @@ class DeliveriesController < ApplicationController
   end
 
   def create
-    @deliveries = Delivery.all
+    @deliveries = current_customer.deliveries.all
     @delivery = Delivery.new(delivery_params)
     @delivery.customer_id =  current_customer.id
-    @delivery.save!
+    if @delivery.save
     redirect_to deliveries_path
+    else
+      @error_msg= ""
+       if params[:delivery][:postcode].blank?
+          @error_msg = "● 郵便番号を入力してください 　 "
+
+       end 
+       if   params[:delivery][:address].blank?
+          @error_msg += "● 住所を入力してください 　 "
+       end
+       if    params[:delivery][:name].blank?
+          @error_msg += "● 宛名を入力してください 　 "
+       end
+       if @error_msg != ""
+          render :index
+       end
+    end
   end
 
   def destroy
@@ -26,8 +42,23 @@ class DeliveriesController < ApplicationController
 
   def update
     @delivery = Delivery.find(params[:id])
-    @delivery.update(delivery_params)
-    redirect_to deliveries_path
+    if @delivery.update(delivery_params)
+      redirect_to deliveries_path
+    else
+      @error_msg= ""
+       if params[:delivery][:postcode].blank?
+          @error_msg = "郵便番号を入力してください"
+       end
+       if   params[:delivery][:address].blank?
+          @error_msg += " 住所を入力してください"
+       end
+       if    params[:delivery][:name].blank?
+          @error_msg += "　宛名を入力してください"
+       end
+       if @error_msg != ""
+          render :edit
+       end
+    end
   end
 
   private

@@ -3,7 +3,7 @@ class Admin::ProductsController < ApplicationController
   def index
       @product = Product.new
       @products = Product.all
-      @products = Product.page(params[:page]).per(3)
+      @products = Product.page(params[:page]).per(5)
       @genres = Genre.all
       @tax = 1.08
   end

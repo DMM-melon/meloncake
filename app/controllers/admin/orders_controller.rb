@@ -3,18 +3,18 @@ class Admin::OrdersController < ApplicationController
   def index
 
     if params[:button].to_i == 1 # ヘッダーから
-  		@orders = Order.all.order(created_at: :desc).page(params[:page]).per(3)
-  	elsif params[:button].to_i == 2 #会員詳細から
-  		@customer = Customer.with_deleted.find(params[:id])
-  	  @orders = @customer.orders.all.order(created_at: :desc).page(params[:page]).per(3)
+      @orders = Order.all.order(created_at: :desc).page(params[:page]).per(10)
+    elsif params[:button].to_i == 2 #会員詳細から
+      @customer = Customer.with_deleted.find(params[:id])
+      @orders = @customer.orders.all.order(created_at: :desc).page(params[:page]).per(10)
     else #トップページから
-    	@orders = Order.where("created_at >= ?", Time.zone.now.beginning_of_day).order(created_at: :desc).page(params[:page]).per(3)
+      @orders = Order.where("created_at >= ?", Time.zone.now.beginning_of_day).order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 
   def show
-  	@order = Order.find(params[:id])
-  	@order_items = @order.order_items.all
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items.all
     @carriage = 800
     @name = @order.customer.last_name + " " + @order.customer.first_name
   end

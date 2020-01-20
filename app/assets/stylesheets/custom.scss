@@ -3,6 +3,8 @@
 
 body {
   padding-top: 60px;
+  font-family: 'Hiragino Maru Gothic ProN';
+  color: #583822;
 }
 
 
@@ -24,32 +26,9 @@ body {
 
 .flex_test-item {
     padding: 10px;
-    color:  #fff;               /* 文字色 */
+    color:  #3f312b;               /* 文字色 */
     margin:  10px;              /* 外側の余白 */
-    border-radius:  5px;        /* 角丸指定 */
+    border: solid thin #e8d3d1;
     width: 26.5%;                 /* 幅指定 */
-    border:  solid 1px;
-}
-
-.flex_test-item:nth-child(1) {
-    background-color:  #FFDBFF;
-    opacity: 0.8;
-}
-
-.flex_test-item:nth-child(2) {
-    background-color:  #FFDBED;
-    opacity: 0.8;
-}
-
-.flex_test-item:nth-child(3) {
-    background-color: #FFE5E5;
-    opacity: 0.8;
-}
-
-.main {
-height: 800px;
-background: linear-gradient(to top, rgba(217, 175, 217, 0.7) 0%, rgba(151, 217, 225, 0.7) 100%),url(img2.jpg);
-background-attachment: scroll;
-    background-size: auto
 }
 

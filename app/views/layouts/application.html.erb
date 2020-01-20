@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Meloncake</title>
+    <title>ながのCAKE</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,19 +10,19 @@
   </head>
 
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
+    <header class="navbar navbar-fixed-top navbar-inverse" style="background-color: #DD5560;" >
       <div class="container">
-        <nav class='nav navbar-nav navbar-left' >
-         <p class="navbar-text"><%= link_to "MELONCAKE", root_path %></p>
+        <nav class="nav navbar-nav navbar-left" style="color: #fff">
+         <h3><%= link_to "ながのCAKE", root_path, :style=>"color:white;" %></h3>
         </nav>
          <nav>
           <ul class="nav navbar-nav navbar-right">
 
               <% if admin_signed_in? %>
-                  <li><%= link_to "商品一覧", admin_products_path %></li>
-                  <li><%= link_to "会員一覧", admin_customers_path %></li>
-                  <li><%= link_to "注文履歴一覧", admin_orders_path(button: 1) %></li>
-                  <li><%= link_to "ジャンル管理", admin_genres_path %></li>
+                  <li><%= link_to "商品一覧", admin_products_path, :style=>"color:white;" %></li>
+                  <li><%= link_to "会員一覧", admin_customers_path, :style=>"color:white;" %></li>
+                  <li><%= link_to "注文履歴一覧", admin_orders_path(button: 1), :style=>"color:white;" %></li>
+                  <li><%= link_to "ジャンル管理", admin_genres_path, :style=>"color:white;" %></li>
                   <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></button>
                   <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
@@ -30,11 +30,11 @@
                   </div>
                   <button type="submit" class="btn btn-default">検索</button>
                   </form>
-                  <p class="navbar-text">管理ログイン中</p>
+                  <p class="navbar-text" style="color: #fff">管理ログイン中</p>
               <% elsif customer_signed_in? %>
-                  <li><%= link_to "カート", cart_items_path %></li>
-                  <li><%= link_to "about", homes_about_path %></li>
-                  <li><%= link_to "マイページ", customer_path(current_customer) %></li>
+                  <li><%= link_to "カート", cart_items_path, :style=>"color:white;" %></li>
+                  <li><%= link_to "about", homes_about_path, :style=>"color:white;" %></li>
+                  <li><%= link_to "マイページ", customer_path(current_customer), :style=>"color:white;" %></li>
                   <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></button>
                   <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
@@ -42,11 +42,11 @@
                   </div>
                   <button type="submit" class="btn btn-default">検索</button>
                   </form>
-                  <p class="navbar-text">ログイン中</p>
+                  <p class="navbar-text" style="color: #fff">ログイン中</p>
               <% else %>
-                  <li><%= link_to "Home", root_path %></li>
-                  <li><%= link_to "About", homes_about_path %></li>
-                  <li><%= link_to "新規登録", new_customer_registration_path %></li>
+                  <li><%= link_to "Home", root_path, :style=>"color:white;" %></li>
+                  <li><%= link_to "About", homes_about_path, :style=>"color:white;" %></li>
+                  <li><%= link_to "新規登録", new_customer_registration_path, :style=>"color:white;" %></li>
                   <button type="button" class="btn btn-default navbar-btn"><%= link_to "ログイン", new_customer_session_path %></button>
                   <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
@@ -54,7 +54,7 @@
                   </div>
                   <button type="submit" class="btn btn-default">検索</button>
                   </form>
-                  <li><p class="navbar-text">未ログイン</p></li>
+                  <li><p class="navbar-text" style="color: #fff">未ログイン</p></li>
               <% end %>
 
           </ul>
