@@ -14,8 +14,17 @@
 			<%= current_customer.address %><br>
 			<%= current_customer.last_name + current_customer.first_name %><br>
 
+			<% if current_customer.deliveries == [] %>
+
+			<%=  %>
+			<br>
+
+			<% else %>
+
 			<label><%= f.radio_button :postage, "2" %> 登録済みの住所から選択 </label><br>
 			<%= f.collection_select(:address_option, current_customer.deliveries, :id, :full_address) %><br>
+
+			<% end %>
 
 			<label><%= f.radio_button :postage, "3" %> 新しいお届け先 </label><br>
 			<div class="text-danger">
