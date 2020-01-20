@@ -1,35 +1,41 @@
-<h1>注文履歴一覧</h1>
-<table class="table table-hover table-inverse">
-    <thead>
-    <tr>
-    <th>注文日</th>
-    <th>配送先</th>
-    <th>注文商品</th>
-    <th>支払金額</th>
-    <th>ステータス</th>
-    <th>注文詳細</th>
-    <th></th>
-    </tr>
-    </thead>
+<div class ="container">
+  <div class ="row">
 
-    <tbody>
-<% @orders.each do |o| %>
-    <tr>
-    	<td><%= o.created_at.strftime("%Y/%m/%d") %></td>
-        <td>〒<%= o.postcode %><br><%= o.address %><br><%= o.name %></td>
-        <td><% o.order_items.each do |i| %>
-                <%= i.name %><br>
-            <% end %>
-        </td>
-        <td><% sum = 0 %>
-            <% o.order_items.each do |t| %>
-                <% sum += t.total_price %>
-            <% end %>
-            <%= number_to_currency(sum) %>
-        </td>
-		<td><%= o.order_status %></td>
-		<td><%= link_to "詳細表示", order_path(o.id) %></td>
-    </tr>
-    <% end %>
-    </tbody>
-</table>
+    <h2>注文履歴一覧</h2>
+    <br>
+    <table class="table table-hover table-inverse">
+        <thead>
+        <tr>
+        <th>注文日</th>
+        <th>配送先</th>
+        <th>注文商品</th>
+        <th>支払金額</th>
+        <th>ステータス</th>
+        <th>注文詳細</th>
+        <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+    <% @orders.each do |o| %>
+        <tr>
+            <td><%= o.created_at.strftime("%Y/%m/%d") %></td>
+            <td>〒<%= o.postcode %><br><%= o.address %><br><%= o.name %></td>
+            <td><% o.order_items.each do |i| %>
+                    <%= i.name %><br>
+                <% end %>
+            </td>
+            <td><% sum = 0 %>
+                <% o.order_items.each do |t| %>
+                    <% sum += t.total_price %>
+                <% end %>
+                <%= number_to_currency(sum) %>
+            </td>
+            <td><%= o.order_status %></td>
+            <td><%= link_to "詳細表示", order_path(o.id) %></td>
+        </tr>
+        <% end %>
+        </tbody>
+    </table>
+  </div>
+</div>

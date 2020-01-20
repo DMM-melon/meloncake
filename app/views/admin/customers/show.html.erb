@@ -1,23 +1,23 @@
 <div class="container">
 	<h2>会員詳細</h2>
-	<div class="low">
-		<div class='col-xs-5'>
-			<p>顧客ID <%= @customer.id %>
-
+	<div class="row">
+	   <div class = "col-lg-5">
+	    <table class="table table-inverse">
+			<tr><th>顧客ID</th><td><%= @customer.id %>
 			<% if @customer.deleted_at.nil? %>
               <%= "有効会員" %>
             <% else %>
               <%= "退会済み" %>
-            <% end %>
-			</p>
-			<p>氏名 <%= @customer.first_name %>
-				<%= @customer.last_name %></p>
-			<p>フリガナ <%= @customer.first_name_kana %>
-				<%= @customer.last_name_kana %></p>
-			<p>郵便番号 <%= @customer.postcode %></p>
-			<p>住所 <%= @customer.address %></p>
-			<p>電話番号 <%= @customer.phone %></p>
-			<p>メールアドレス <%= @customer.email %></p>
+            <% end %></td></tr>
+			<tr><th>氏名</th><td><%= @customer.first_name %>
+				<%= @customer.last_name %></td></tr>
+			<tr><th>フリガナ</th><td><%= @customer.first_name_kana %>
+				<%= @customer.last_name_kana %></td></tr>
+			<tr><th>郵便番号</th><td><%= @customer.postcode %></td></tr>
+			<tr><th>住所</th><td><%= @customer.address %></td></tr>
+			<tr><th>電話番号</th><td><%= @customer.phone %></td></tr>
+			<tr><th>メールアドレス</th><td><%= @customer.email %></td></tr>
+		</table>
 			<%=link_to "編集する", edit_admin_customer_path(@customer.id) %>
 	        <%=link_to "注文履歴一覧を見る", admin_orders_path(button: 2, id: @customer.id) %>
 		</div>
