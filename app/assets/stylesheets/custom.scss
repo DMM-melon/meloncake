@@ -17,6 +17,9 @@ body {
         }
       }
 
+.navbar-text {
+  font-family: fantasy;
+}
 
 .flex_test-box {
     padding:  10px;             /* 余白指定 */
@@ -30,5 +33,6 @@ body {
     margin:  10px;              /* 外側の余白 */
     border: solid thin #e8d3d1;
     width: 26.5%;                 /* 幅指定 */
+
 }
 
