@@ -15,6 +15,9 @@ body {
         }
       }
 
+.navbar-text {
+  font-family: fantasy;
+}
 
 .flex_test-box {
     padding:  10px;             /* 余白指定 */
@@ -29,6 +32,7 @@ body {
     border-radius:  5px;        /* 角丸指定 */
     width: 26.5%;                 /* 幅指定 */
     border:  solid 1px;
+    font-family: fantasy;
 }
 
 .flex_test-item:nth-child(1) {
