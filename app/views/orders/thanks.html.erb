@@ -1,2 +1,45 @@
-<h1>サンクスページ</h1>
-<h1>ご購入ありがとうございます</h1>
+    <body id="body">
+	
+		<div id="preloader">
+            <%= image_tag 'preloader.gif'%>
+		</div>
+
+		<section id="slider">
+			<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+			
+				<div class="carousel-inner" role="listbox">
+					
+					<div class="item active" ><%= image_tag 'l.jpg', :size =>'1940x980'%>
+						<div class="carousel-caption">
+							<h2 data-wow-duration="700ms" data-wow-delay="500ms" class="wow bounceInDown animated">ご購入<span> ありがとうございます</span>!</h2>
+							<h3 data-wow-duration="1000ms" class="wow slideInLeft animated"><span class="color">/NAGANO/</span>One cake in the world.</h3>
+							<p data-wow-duration="1000ms" class="wow slideInRight animated">We are a team of professionals</p>
+						</div>
+					</div>
+					
+					<div class="item" ><%= image_tag 'l.jpg', :size =>'1940x980'%>
+						<div class="carousel-caption">
+							<h2 data-wow-duration="500ms" data-wow-delay="500ms" class="wow bounceInDown animated">またの<span>ご注文</span>お待ちしてます!</h2>
+							<h3 data-wow-duration="500ms" class="wow slideInLeft animated"><span class="color">/NAGANO/</span>One cake in the world.</h3>
+							<p data-wow-duration="500ms" class="wow slideInRight animated">We are a team of professionals</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<footer id="footer" class="footer">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<p class="copyright text-center">
+							Copyright © 2020 <a href="http://themefisher.com/">NAGANOCAKE</a>. All rights reserved. Designed & developed by <a href="http://themefisher.com/">NAGANOCAKE</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+        <script src="js/jquery.singlePageNav.min.js"></script>
+    </body>
+</html>
